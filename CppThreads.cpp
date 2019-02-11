@@ -6,7 +6,8 @@
 #include <thread> 
 #include <fstream>
 #include <string>
-using namespace std;
+#include <chrono>
+using namespace std; 
 
 string getNumbers()
 {
@@ -35,7 +36,7 @@ void pairWise(int thIndex)
     int numOfThrees = 0;
     for (int i = 0; i < partSize; i ++)
     {
-        if((partition[i] = '3'))
+        if((partition[i] == '3'))
         {
             numOfThrees++;
         }
@@ -45,6 +46,7 @@ void pairWise(int thIndex)
 
 int main()
 { 
+    chrono:auto start = high_resolution_clock::now();
     
     thread th0(pairWise,th0Index);
     thread th1(pairWise,th1Index);
@@ -64,8 +66,13 @@ int main()
     th6.join();
     th7.join();
     
+    chrono:auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stop - start);
+    
     
     cout << "Total Number of 3's: " << totalThrees << "\n";
+    cout << "Exicution time: " << duration.count() << " microseconds\n";
+    
     
     return EXIT_SUCCESS;
 }
