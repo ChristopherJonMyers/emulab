@@ -8,6 +8,7 @@
 #include <string>
 #include <chrono>
 using namespace std; 
+using namespace std::chrono;
 
 string getNumbers()
 {
@@ -46,7 +47,7 @@ void pairWise(int thIndex)
 
 int main()
 { 
-    chrono:auto start = high_resolution_clock::now();
+    auto start = high_resolution_clock::now();
     
     thread th0(pairWise,th0Index);
     thread th1(pairWise,th1Index);
@@ -66,7 +67,7 @@ int main()
     th6.join();
     th7.join();
     
-    chrono:auto stop = high_resolution_clock::now();
+    auto stop = high_resolution_clock::now();
     auto duration = duration_cast<microseconds>(stop - start);
     
     
